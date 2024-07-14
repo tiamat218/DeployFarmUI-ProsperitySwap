@@ -39,10 +39,10 @@ const Hero = styled.div`  // mobile verision
     background-size: cover;
     background-position: center;
     
-    margin: auto;
-    margin-top: -130px;
-    margin-bottom: -230px;
-    height: 760px;
+    
+    margin-top: -100px;
+    margin-bottom: -50px;
+    height: 500px;
     
     padding-top: 1;
   }
@@ -90,18 +90,19 @@ const Home: React.FC = () => {
 
       <Button 
               as="a"
-              variant="secondary"
-              href="TODO - swap to the token on our dex UI!"
+              variant="primary"
+              href=""
               target="_blank" >
-              Get Global Money Token
+              Get GMT
         </Button>
 
         <br/><br/>
 
-        <Text color='secondary'> Advanced Sustainable Earning Technology</Text>
-        <Text color='secondary'> Blast yield + Transaction fees for BuyBack!</Text>
+        <Heading as="h2"  color='#bdbdbd'> Advanced Sustainable Earning Technology </Heading>
+        <Heading as="h2"  color='#bdbdbd' mb="12px"> Blast Yield + Transaction fees for BuyBack! </Heading>
+        
 
-      {/* <Timer /> */}
+    
 
       <div>
 

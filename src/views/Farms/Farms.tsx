@@ -101,13 +101,13 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
       </Heading>  
 
 
-      <Text  color="#bdbdbd" mb="15px" style={{ textAlign: 'center' }} >
-        {TranslateString(0, 'See exact unlock time after staking!')}
-      </Text>
+      <Heading as="h2" color="#bdbdbd" mb="12px" style={{ textAlign: 'center' }}>
+        {TranslateString(0, 'ETH/wETH/USDB-Yield, Transactionfee-Cash-Back')}
+        </Heading> 
        
-{/*       <Heading as="h2" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
-        {TranslateString(10000, 'Deposit Fee will be used to buyback Adamant')}
-      </Heading> */}
+      <Heading as="h2" color="#bdbdbd" mb="50px" style={{ textAlign: 'center' }}>
+        {TranslateString(0, '100% for GMT BUYBACK!')}
+      </Heading> 
     
       <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly}/>
       <div>

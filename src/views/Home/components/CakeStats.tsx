@@ -95,7 +95,7 @@ const CakeStats = () => {
                            fullWidth
                            href="/presale"
                            target="_blank" >
-                           {TranslateString(0, 'Buy TITAN in Pre-Sale >')}
+                           {TranslateString(0, 'Buy GMT in Pre-Sale >')}
         </Button>
 
        

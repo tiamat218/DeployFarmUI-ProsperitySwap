@@ -1,5 +1,7 @@
 import { MenuEntry } from '@pancakeswap-libs/uikit'
 
+
+
 const config: MenuEntry[] = [
   {
     label: 'Home',
@@ -27,7 +29,9 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'todo link our swap ui website',
+        href: 'todo link our swap ui website',  // todo wollt dass sich dass in nem neuen tab öffnet, mach das mal... 
+        // target: '_blank',
+        // rel: 'noopener noreferrer',
         // href: 'https://pancakeswap.finance/swap?outputCurrency=0x8f43c697Ea453408B242D8dEa171611320480043',
       },
       {
@@ -44,7 +48,7 @@ const config: MenuEntry[] = [
     items: [
 
       {
-        label: 'Dexscreener',
+        label: 'GMT on Dexscreener',
         href: 'https://dexscreener.com/blast/0xd0dc1af4f93916d662fdbcfaf5b5e2904f7d5514',
       }
     ],
