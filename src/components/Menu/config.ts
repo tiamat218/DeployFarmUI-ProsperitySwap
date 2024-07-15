@@ -1,5 +1,7 @@
 import { MenuEntry } from '@pancakeswap-libs/uikit'
 
+
+
 const config: MenuEntry[] = [
   {
     label: 'Home',
@@ -26,7 +28,7 @@ const config: MenuEntry[] = [
     icon: 'TradeIcon',
     href: 'https://deployswap-u-ifor-prosp-blast.vercel.app/swap',
   },
-,
+
 
   {
     label: 'Price Info',
@@ -34,7 +36,7 @@ const config: MenuEntry[] = [
     items: [
 
       {
-        label: 'Dexscreener',
+        label: 'GMT on Dexscreener',
         href: 'https://dexscreener.com/blast/0xd0dc1af4f93916d662fdbcfaf5b5e2904f7d5514',
       }
     ],
