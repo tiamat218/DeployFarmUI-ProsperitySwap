@@ -22,21 +22,11 @@ const config: MenuEntry[] = [
 
 
   {
-    label: 'Trade',
+    label: 'Swap',
     icon: 'TradeIcon',
-    items: [
-      {
-        label: 'Exchange',
-        href: 'todo link our swap ui website',
-        // href: 'https://pancakeswap.finance/swap?outputCurrency=0x8f43c697Ea453408B242D8dEa171611320480043',
-      },
-      {
-        label: 'Liquidity',
-        href: 'todo link our LIQU adding ui website',
-      },
-
-    ],
+    href: 'https://deployswap-u-ifor-prosp-blast.vercel.app/swap',
   },
+,
 
   {
     label: 'Price Info',
