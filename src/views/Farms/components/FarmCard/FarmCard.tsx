@@ -12,6 +12,7 @@ import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
+import GradientUnlockButton from './GradientUnlockButton'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
@@ -93,10 +94,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  // const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
-  // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
-  // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
-  // const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
   const farmImage = farm.isTokenOnly ? farm.tokenSymbol.toLowerCase() : `${farm.tokenSymbol.toLowerCase()}-${farm.quoteTokenSymbol.toLowerCase()}`
 
   const totalValue: BigNumber = useMemo(() => {
@@ -168,31 +165,34 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         <Text bold style={{ fontSize: '24px' }} color="textSubtle">{(farm.depositFeeBP / 100)}%</Text>
       </Flex>
 
-
-
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
       <Divider />
-      <ExpandableSectionButton
-        onClick={() => setShowExpandableSection(!showExpandableSection)}
-        expanded={showExpandableSection}
-      />
-      <ExpandingWrapper expanded={showExpandableSection}>
-        <DetailsSection
-          removed={removed}
-          isTokenOnly={farm.isTokenOnly}
-          bscScanAddress={
-            farm.isTokenOnly ?
-              `https://bscscan.com/token/${farm.tokenAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
-              :
-              `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
-          }
-          totalValueFormated={totalValueFormated}
-          lpLabel={lpLabel}
-          quoteTokenAdresses={quoteTokenAdresses}
-          quoteTokenSymbol={quoteTokenSymbol}
-          tokenAddresses={tokenAddresses}
-        />
-      </ExpandingWrapper>
+      {!account && <GradientUnlockButton fullWidth />}
+      {account && (
+        <>
+          <ExpandableSectionButton
+            onClick={() => setShowExpandableSection(!showExpandableSection)}
+            expanded={showExpandableSection}
+          />
+          <ExpandingWrapper expanded={showExpandableSection}>
+            <DetailsSection
+              removed={removed}
+              isTokenOnly={farm.isTokenOnly}
+              bscScanAddress={
+                farm.isTokenOnly ?
+                  `https://bscscan.com/token/${farm.tokenAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
+                  :
+                  `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
+              }
+              totalValueFormated={totalValueFormated}
+              lpLabel={lpLabel}
+              quoteTokenAdresses={quoteTokenAdresses}
+              quoteTokenSymbol={quoteTokenSymbol}
+              tokenAddresses={tokenAddresses}
+            />
+          </ExpandingWrapper>
+        </>
+      )}
     </FCard>
   )
 }

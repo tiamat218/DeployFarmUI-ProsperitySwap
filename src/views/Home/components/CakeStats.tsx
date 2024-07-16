@@ -75,8 +75,8 @@ const CakeStats = () => {
         </Row>
 */}
         <Row>
-          <Text fontSize="14px" color="#cc1212">Total Burned</Text>
-          <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} color="#cc1212" />
+          <Text fontSize="14px" color="#30D5C8">Total Burned</Text>
+          <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} color="#30D5C8" />
         </Row>
         <Row>
           <Text fontSize="14px">Circulating Supply</Text>

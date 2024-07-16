@@ -1,19 +1,19 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button, Text } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Button, Text, useWalletModal } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
-import UnlockButton from 'components/UnlockButton'
+import useTokenBalance from 'hooks/useTokenBalance'
+import useAllEarnings from 'hooks/useAllEarnings'
+import { usePriceCakeBusd } from 'state/hooks'
+import { getCakeAddress } from 'utils/addressHelpers'
+import { getBalanceNumber } from 'utils/formatBalance'
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
-import { usePriceCakeBusd } from '../../../state/hooks'
-import useTokenBalance from '../../../hooks/useTokenBalance'
-import { getCakeAddress } from '../../../utils/addressHelpers'
-import useAllEarnings from '../../../hooks/useAllEarnings'
-import { getBalanceNumber } from '../../../utils/formatBalance'
+import GradientButton from './GradientButton'
 
 const StyledFarmStakingCard = styled(Card)`
   // background-image: url('/images/egg/2f.png');
@@ -40,9 +40,10 @@ const Actions = styled.div`
   margin-top: 24px;
 `
 
-const FarmedStakingCard = () => {
+const FarmStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
-  const { account } = useWallet()
+  const { account, connect, reset } = useWallet()
+  const { onPresentConnectModal } = useWalletModal(connect, reset)
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress()))
@@ -66,8 +67,6 @@ const FarmedStakingCard = () => {
     }
   }, [onReward])
 
- 
-
   return (
     <StyledFarmStakingCard>
       <CardBody>
@@ -82,17 +81,15 @@ const FarmedStakingCard = () => {
           <Label>~${(eggPrice * cakeBalance).toFixed(5)}</Label>
         </Block>
 
-         <Block>
+        <Block>
           <Label> GMT to collect </Label>
           <CakeHarvestBalance earningsSum={earningsSum}/>
           <Label>~${(eggPrice * earningsSum).toFixed(3)}</Label>
-        </Block> 
-
-
+        </Block>
 
         <Actions>
           {account ? (
-            <Button
+            <GradientButton
               id="harvest-all"
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
@@ -100,21 +97,17 @@ const FarmedStakingCard = () => {
             >
               {pendingTx
                 ? "Collecting earnings ..."
-                : "Harves all Farms"}
-            </Button>
+                : "Harvest all Farms"}
+            </GradientButton>
           ) : (
-            <UnlockButton fullWidth />
+            <GradientButton fullWidth onClick={onPresentConnectModal}>
+              Unlock Wallet
+            </GradientButton>
           )}
-          
-   {/*        <Text fontSize="14px" color="#fcca03"> {TranslateString(999, '(Harvest arrives only after locking time!)')}</Text> 
- */}
         </Actions>
-
-      
-
       </CardBody>
     </StyledFarmStakingCard>
   )
 }
 
-export default FarmedStakingCard
+export default FarmStakingCard

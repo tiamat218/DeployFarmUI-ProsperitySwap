@@ -50,8 +50,8 @@ const TotalValueLockedCard = () => {
         </Row>
 
       <Row>
-          <Text fontSize="14px" color="#cc1212"> Total GMT Burned </Text>
-          <CardValue fontSize="14px" color="#cc1212" value={getBalanceNumber(burnedBalance)} decimals={2} />
+          <Text fontSize="14px" color="#30D5C8"> Total GMT Burned </Text>
+          <CardValue fontSize="14px" color="#30D5C8" value={getBalanceNumber(burnedBalance)} decimals={2} />
         </Row>
 
         <Row>
