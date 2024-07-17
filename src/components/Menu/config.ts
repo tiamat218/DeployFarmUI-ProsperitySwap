@@ -26,7 +26,7 @@ const config: MenuEntry[] = [
   {
     label: 'Swap',
     icon: 'TradeIcon',
-    href: 'https://deployswap-u-ifor-prosp-blast.vercel.app/swap',
+    href: 'https://deployswap-u-ifor-prosp-blast-git-develop-tiamat218s-projects.vercel.app/swap',
   },
 
 

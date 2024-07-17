@@ -68,6 +68,21 @@ const FCard = styled.div`
   text-align: center;
 `
 
+const CardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Text linksbündig */
+  padding: 24px;
+  width: 100%;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+`
+
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.borderColor};
   height: 1px;
@@ -125,76 +140,79 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   return (
     <FCard>
       {farm.tokenSymbol === 'GMT' && <StyledCardAccent />}
-      <CardHeading
-        lpLabel={lpLabel}
-        multiplier={farm.multiplier}
-        risk={risk}
-        depositFee={farm.depositFeeBP}
-        farmImage={farmImage}
-        tokenSymbol={farm.tokenSymbol}
-      />
-      {!removed && (
-        <Flex justifyContent='space-between' alignItems='center'>
-          <Text>{TranslateString(352, 'APR')}:</Text>
-          <Text bold style={{ display: 'flex', alignItems: 'center' }} color="textSubtle">
-            {farm.apy ? (
-              <>
-                <ApyButton
-                  lpLabel={lpLabel}
-                  quoteTokenAdresses={quoteTokenAdresses}
-                  quoteTokenSymbol={quoteTokenSymbol}
-                  tokenAddresses={tokenAddresses}
-                  cakePrice={cakePrice}
-                  apy={farm.apy}
-                />
-                {farmAPY}%
-              </>
-            ) : (
-              <Skeleton height={24} width={80} />
-            )}
-          </Text>
+      <CardContent>
+        <CardHeading
+          lpLabel={lpLabel}
+          multiplier={farm.multiplier}
+          risk={risk}
+          depositFee={farm.depositFeeBP}
+          farmImage={farmImage}
+          tokenSymbol={farm.tokenSymbol}
+        />
+        {!removed && (
+          <Flex justifyContent='space-between' alignItems='center'>
+            <Text>{TranslateString(352, 'APR')}:</Text>
+            <Text bold style={{ display: 'flex', alignItems: 'center' }} color="textSubtle">
+              {farm.apy ? (
+                <>
+                  <ApyButton
+                    lpLabel={lpLabel}
+                    quoteTokenAdresses={quoteTokenAdresses}
+                    quoteTokenSymbol={quoteTokenSymbol}
+                    tokenAddresses={tokenAddresses}
+                    cakePrice={cakePrice}
+                    apy={farm.apy}
+                  />
+                  {farmAPY}%
+                </>
+              ) : (
+                <Skeleton height={24} width={80} />
+              )}
+            </Text>
+          </Flex>
+        )}
+        <Flex justifyContent='space-between'>
+          <Text>{TranslateString(318, 'Earn')}:</Text>
+          <Text bold color="textSubtle">{earnLabel}</Text>
         </Flex>
-      )}
-      <Flex justifyContent='space-between'>
-        <Text>{TranslateString(318, 'Earn')}:</Text>
-        <Text bold color="textSubtle">{earnLabel}</Text>
-      </Flex>
 
-      <Flex justifyContent='space-between'>
-        <Text style={{ fontSize: '24px' }}>{TranslateString(10001, 'Deposit Fee')}:</Text>
-        <Text bold style={{ fontSize: '24px' }} color="textSubtle">{(farm.depositFeeBP / 100)}%</Text>
-      </Flex>
+        <Flex justifyContent='space-between'>
+          <Text style={{ fontSize: '24px' }}>{TranslateString(10001, 'Deposit Fee')}:</Text>
+          <Text bold style={{ fontSize: '24px' }} color="textSubtle">{(farm.depositFeeBP / 100)}%</Text>
+        </Flex>
 
-      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
-      <Divider />
-      {!account && <GradientUnlockButton fullWidth />}
-      {account && (
-        <>
-          <ExpandableSectionButton
-            onClick={() => setShowExpandableSection(!showExpandableSection)}
-            expanded={showExpandableSection}
-          />
-          <ExpandingWrapper expanded={showExpandableSection}>
-            <DetailsSection
-              removed={removed}
-              isTokenOnly={farm.isTokenOnly}
-              bscScanAddress={
-                farm.isTokenOnly ?
-                  `https://bscscan.com/token/${farm.tokenAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
-                  :
-                  `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
-              }
-              totalValueFormated={totalValueFormated}
-              lpLabel={lpLabel}
-              quoteTokenAdresses={quoteTokenAdresses}
-              quoteTokenSymbol={quoteTokenSymbol}
-              tokenAddresses={tokenAddresses}
+        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
+        <Divider />
+        {!account && <GradientUnlockButton fullWidth />}
+        {account && (
+          <>
+            <ExpandableSectionButton
+              onClick={() => setShowExpandableSection(!showExpandableSection)}
+              expanded={showExpandableSection}
             />
-          </ExpandingWrapper>
-        </>
-      )}
+            <ExpandingWrapper expanded={showExpandableSection}>
+              <DetailsSection
+                removed={removed}
+                isTokenOnly={farm.isTokenOnly}
+                bscScanAddress={
+                  farm.isTokenOnly ?
+                    `https://bscscan.com/token/${farm.tokenAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
+                    :
+                    `https://bscscan.com/token/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}` // TODO
+                }
+                totalValueFormated={totalValueFormated}
+                lpLabel={lpLabel}
+                quoteTokenAdresses={quoteTokenAdresses}
+                quoteTokenSymbol={quoteTokenSymbol}
+                tokenAddresses={tokenAddresses}
+              />
+            </ExpandingWrapper>
+          </>
+        )}
+      </CardContent>
     </FCard>
   )
 }
 
 export default FarmCard
+
