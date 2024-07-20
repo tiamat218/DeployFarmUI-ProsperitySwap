@@ -1,0 +1,58 @@
+/* custom-styles.css */
+:root {
+    --secondary: #9A6AFF !important;
+    --background: #343135 !important;
+    --backgroundDisabled: #3c3742 !important;
+    --contrast: #FFFFFF !important;
+    --invertedContrast: #191326 !important;
+    --input: #483f5a !important;
+    --primaryDark: #0098A1 !important;
+    --tertiary: #353547 !important;
+    --text: #EAE2FC !important;
+    --textDisabled: #666171 !important;
+    --textSubtle: #c9c4d4 !important;
+    --borderColor: #524B63 !important;
+    --card: #27262c !important;
+    --gradientBubblegum: linear-gradient(139.73deg, #313D5C 0%, #3D2A54 100%) !important;
+  }
+  
+  body {
+    background-color: var(--background) !important;
+    color: var(--text) !important;
+  }
+  
+  .button {
+    background-color: var(--primary) !important;
+    color: var(--contrast) !important;
+  }
+  
+  .input {
+    background-color: var(--input) !important;
+    color: var(--text) !important;
+    border-color: var(--borderColor) !important;
+  }
+  
+  .card {
+    background-color: var(--card) !important;
+    border-color: var(--borderColor) !important;
+    color: var(--text) !important;
+  }
+  
+  .text-subtle {
+    color: var(--textSubtle) !important;
+  }
+  
+  .text-disabled {
+    color: var(--textDisabled) !important;
+  }
+  
+  .tertiary {
+    background-color: var(--tertiary) !important;
+  }
+  
+  .gradient-bubblegum {
+    background: var(--gradientBubblegum) !important;
+  }
+  
+  /* Weitere spezifische Stile können hier hinzugefügt werden */
+  

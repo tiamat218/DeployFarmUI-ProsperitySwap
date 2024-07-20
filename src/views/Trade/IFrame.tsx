@@ -11,11 +11,9 @@ interface IFrameProps {
 const IFrame: React.FC<IFrameProps> = (props) => {
   const { url, title } = props
   const iframeRef = useRef(null);
-  const { isDark } = useContext(ThemeContext);
   const { selectedLanguage } = useContext(LanguageContext)
   const sendSettings = e =>{
     const payload = {
-      isDark,
       selectedLanguage
     }
     iframeRef.current.sendMessage(payload)
