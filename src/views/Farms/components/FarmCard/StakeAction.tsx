@@ -6,8 +6,10 @@ import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
+import GradientButton from 'views/Home/components/GradientButton'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
+
 
 interface FarmCardActionsProps {
   stakedBalance?: BigNumber
@@ -39,7 +41,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalan
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
+      <GradientButton onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</GradientButton>
     ) : (
       <IconButtonWrapper>
         <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">

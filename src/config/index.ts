@@ -6,7 +6,7 @@ BigNumber.config({
 })
 
 export const CAKE_PER_BLOCK = new BigNumber(1) // TODO  ganze calc läuft auf token per second, also rausfinden wie wir das umbauen ...
-export const BLOCKS_PER_YEAR = new BigNumber(10512000) // TODO
+export const BLOCKS_PER_YEAR = new BigNumber(31851360) // TODO
 export const BSC_BLOCK_TIME = 3  // TODO
 
 export const CAKE_POOL_PID = 1

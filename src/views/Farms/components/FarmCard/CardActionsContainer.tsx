@@ -10,9 +10,11 @@ import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
+import GradientButton from 'views/Home/components/GradientButton'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 import { usePriceCakeBusd } from '../../../../state/hooks'
+
 
 const Action = styled.div`
   padding-top: 16px;
@@ -62,9 +64,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
     return isApproved ? (
       <StakeAction stakedBalance={stakedBalance} tokenBalance={tokenBalance} tokenName={lpName} pid={pid} depositFeeBP={depositFeeBP} />
     ) : (
-      <Button mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
+      <GradientButton mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
         {TranslateString(999, 'Approve Contract')}
-      </Button>
+      </GradientButton>
     )
   }
 
@@ -102,9 +104,15 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
           {TranslateString(999, 'Staked')}
         </Text>
 
-      </Flex>
-      {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
-    </Action>
+        </Flex>
+  {!account ? (
+    <UnlockButton mt="8px" fullWidth as={GradientButton}>
+      {TranslateString(999, 'Unlock Wallet')}
+    </UnlockButton>
+  ) : (
+    renderApprovalOrStakeButton()
+  )}
+</Action>
   )
 }
 

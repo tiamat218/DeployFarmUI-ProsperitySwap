@@ -5,6 +5,7 @@ import ModalActions from 'components/ModalActions'
 import TokenInput from '../../../components/TokenInput'
 import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
+import GradientButton from 'views/Home/components/GradientButton'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -42,10 +43,10 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         symbol={tokenName}
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss}>
+        <GradientButton variant="secondary" onClick={onDismiss}>
           {TranslateString(462, 'Cancel')}
-        </Button>
-        <Button
+        </GradientButton>
+        <GradientButton
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -55,7 +56,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           }}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
-        </Button>
+        </GradientButton>
       </ModalActions>
     </Modal>
   )

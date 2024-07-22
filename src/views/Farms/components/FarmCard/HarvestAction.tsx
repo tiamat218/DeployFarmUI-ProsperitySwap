@@ -6,7 +6,9 @@ import useI18n from 'hooks/useI18n'
 import { useHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
 import styled from 'styled-components'
+import GradientButton from 'views/Home/components/GradientButton'
 import useStake from '../../../../hooks/useStake'
+
 
 interface FarmCardActionsProps {
   earnings?: BigNumber
@@ -48,7 +50,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, account,
       <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
       <BalanceAndCompound>
         {pid === 99 ?
-          <Button
+          <GradientButton
             disabled={rawEarningsBalance === 0 || pendingTx}
             size='sm'
             variant='secondary'
@@ -60,10 +62,10 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, account,
             }}
           >
             {TranslateString(999, 'Compound')}
-          </Button>
+          </GradientButton>
           : null}
         
-        <Button
+        <GradientButton
           disabled={(rawEarningsBalance === 0  || (pendingTx|| harvestLocked))  }
           onClick={async () => {
             setPendingTx(true)
@@ -75,7 +77,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, account,
             TranslateString(999, 'Harvest Locked')
           : TranslateString(999, 'Harvest')
         }
-        </Button>
+        </GradientButton>
         
         {(harvestingLockApplicable || rawEarningsBalance > 0) ?
         
